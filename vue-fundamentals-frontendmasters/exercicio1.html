@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Time</title>
+    <style>
+        body{
+            background-color: black;
+            color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>It`s adventure time</h1>
+        <h3>Characters:</h3>
+        <ul v-if="listOfCharacters.length > 0">
+            <li v-for="character in listOfCharacters">{{ character }}</li>
+        </ul>        
+        <p v-else>No characters in the list</p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue
+
+        const app = createApp({
+            data() {
+                return{
+                    listOfCharacters: [ "Finn", "Jake", "Marceline", "PB", "LR" ]
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>
