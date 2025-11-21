@@ -16,7 +16,20 @@
         <h1>It`s adventure time</h1>
         <h3>Characters:</h3>
         <ul v-if="listOfCharacters.length > 0">
-            <li v-for="character in listOfCharacters">{{ character }}</li>
+            <h3>favoritos: </h3>
+            <div v-for="character in listOfCharacters">
+                <div v-if="character.favorite">
+                    <li>{{ character.name }}</li>
+                    <button @click="toggleFavorite(character)"> desfavoritar </button>
+                </div>
+            </div>
+            <h3>n favoritos: </h3>
+            <div v-for="character in listOfCharacters">
+                <div v-if="!character.favorite">
+                    <li>{{ character.name }}</li>
+                    <button @click="toggleFavorite(character)"> favoritar </button>
+                </div>
+            </div>
         </ul>        
         <p v-else>No characters in the list</p>
     </div>
@@ -27,7 +40,34 @@
         const app = createApp({
             data() {
                 return{
-                    listOfCharacters: [ "Finn", "Jake", "Marceline", "PB", "LR" ]
+                    listOfCharacters: [ 
+                        {
+                            name: "Fin",
+                            favorite: false
+                        },
+                        {
+                            name: "Jake",
+                            favorite: false
+                        },
+                        {
+                            name: "PB",
+                            favorite: false
+                        },
+                        {
+                            name: "LR",
+                            favorite: false
+                        },
+                     ]
+                }
+            },
+            methods: {
+                toggleFavorite(character) {
+                    if(character.favorite) {
+                        character.favorite = false
+                    }
+                    else {
+                        character.favorite = true
+                    }
                 }
             }
         })
