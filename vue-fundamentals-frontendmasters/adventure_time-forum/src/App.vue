@@ -1,5 +1,15 @@
 <script>
+import FavoritesList from './components/favoritesList.vue';
+import StatsTable from './components/statsTable.vue';
+
+
   export default {
+
+    components: {
+    FavoritesList,
+    StatsTable
+},
+
     data() {
     return{
         listOfCharacters: [ 
@@ -39,75 +49,17 @@
                 race: "Candy person"
             }
         ],
-
-        listOfRaces: ["Human",  "dog", "Candy person", "rainycorn"]
     }
   },
-  computed: {
-      raceStatisitcs() {
-          return this.listOfRaces.map( (race) => {
-              const total = this.listOfCharacters.filter(character => character.race === race).length
-
-              const numFavorites = this.listOfCharacters.filter(character => character.favorite && character.race === race).length
-
-              return{
-                  race: race,
-                  total: total,
-                  numFavorites: numFavorites
-              }
-          })
-      }
-  },
-  methods: {
-      toggleFavorite(character) {
-          if(character.favorite) {
-              character.favorite = false
-          }
-          else {
-              character.favorite = true
-          }
-      }
-    }
   }
 </script>
 
 <template>
   <h1>It`s adventure time</h1>
-  <h3>Characters:</h3>
-  <ul v-if="listOfCharacters.length > 0">
-      <h3>favoritos: </h3>
-      <div v-for="character in listOfCharacters">
-          <div v-if="character.favorite">
-              <li>{{ character.name }}</li>
-              <button @click="toggleFavorite(character)"> desfavoritar </button>
-          </div>
-      </div>
-      <h3>n favoritos: </h3>
-      <div v-for="character in listOfCharacters">
-          <div v-if="!character.favorite">
-              <li>{{ character.name }}</li>
-              <button @click="toggleFavorite(character)"> favoritar </button>
-          </div>
-      </div>
-  </ul>        
-  <p v-else>No characters in the list</p>
 
-  <table>
-      <thead>
-          <tr>
-              <th>raça</th>
-              <th>QTD</th>
-              <th>num de favoritos</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr v-for="stat in raceStatisitcs">
-              <td>{{ stat.race }}</td>
-              <td>{{ stat.total }}</td> <!-- quantidade reativa -->
-              <td>{{ stat.numFavorites }}</td> <!-- quantidade reativa -->
-          </tr>
-      </tbody>
-  </table>
+  <FavoritesList :listOfCharacters="listOfCharacters" />
+
+  <StatsTable :listOfCharacters="listOfCharacters" />
 </template>
 
 <style scoped>
