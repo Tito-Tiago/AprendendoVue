@@ -23,7 +23,12 @@
             }
         },
 
-        props: ['listOfCharacters']
+        props: {
+            listOfCharacters: {
+                type: Array,
+                required: true
+            }
+        }
 
     }
 

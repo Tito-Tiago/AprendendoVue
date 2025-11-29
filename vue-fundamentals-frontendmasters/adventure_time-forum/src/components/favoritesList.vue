@@ -5,7 +5,12 @@
             }
         },
 
-        props: ['listOfCharacters'],
+        props: {
+            listOfCharacters: {
+                type: Array,
+                required: true
+            }
+        },
 
         methods: {
             toggleFavorite(character) {
