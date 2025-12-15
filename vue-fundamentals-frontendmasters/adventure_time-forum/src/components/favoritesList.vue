@@ -1,5 +1,8 @@
 <script>
     export default{
+        emits: ['toggle-favourite'],
+
+
         data() {
             return{
             }
@@ -11,15 +14,10 @@
                 required: true
             }
         },
-
+        
         methods: {
-            toggleFavorite(character) {
-                if(character.favorite) {
-                    character.favorite = false
-                }
-                else {
-                    character.favorite = true
-                }
+            emitToggleFavourite(character) {
+                this.$emit('toggle-favourite', character)
             }
         }
     }
@@ -32,14 +30,14 @@
       <div v-for="character in this.listOfCharacters">
           <div v-if="character.favorite">
               <li>{{ character.name }}</li>
-              <button @click="toggleFavorite(character)"> desfavoritar </button>
+              <button @click="emitToggleFavourite(character)"> desfavoritar </button>
           </div>
       </div>
       <h3>n favoritos: </h3>
       <div v-for="character in this.listOfCharacters">
           <div v-if="!character.favorite">
               <li>{{ character.name }}</li>
-              <button @click="toggleFavorite(character)"> favoritar </button>
+              <button @click="emitToggleFavourite(character)"> favoritar </button>
           </div>
       </div>
   </ul>        
