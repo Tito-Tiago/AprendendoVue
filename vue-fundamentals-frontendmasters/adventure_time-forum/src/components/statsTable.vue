@@ -52,3 +52,13 @@
       </tbody>
   </table>
 </template>
+
+<style scoped> 
+    table{
+        padding: 20px;
+        width: 60vw;
+    }
+    td{
+        text-align: center;
+    }
+</style>

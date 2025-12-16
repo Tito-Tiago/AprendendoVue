@@ -1,12 +1,14 @@
 <script>
     import FavoritesList from './components/favoritesList.vue';
     import StatsTable from './components/statsTable.vue';
+    import BaseLayout from './components/baseLayout.vue'
 
 
     export default {
         components: {
             FavoritesList,
-            StatsTable
+            StatsTable,
+            BaseLayout
         },
 
         data() {
@@ -65,22 +67,26 @@
 </script>
 
 <template>
-  <h1>It`s adventure time</h1>
 
-  <FavoritesList :listOfCharacters="listOfCharacters" @toggle-favourite="toggleFavorite" />
+    <BaseLayout>
+        <template #header> <h1>It`s adventure time</h1> </template>
+        <template #main>
+          <FavoritesList :listOfCharacters="listOfCharacters" @toggle-favourite="toggleFavorite" />
+          <StatsTable :listOfCharacters="listOfCharacters" />
+        </template>
+        <template #footer> <p>All rights reserved</p> </template>
+    </BaseLayout>
 
-  <StatsTable :listOfCharacters="listOfCharacters" />
+
 </template>
 
-<style scoped>
+<style>
+  *{
+    box-sizing: border-box;
+  }
   body{
-      background-color: black;
       color: darkgray;
-  }
-  table{
-      width: 600px;
-  }
-  td{
-      text-align: center;
+      margin: 0;
+      background-color: #3b4652;
   }
 </style>
